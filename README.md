@@ -1,18 +1,11 @@
 # WhisperX
 
-[![PyPI](https://img.shields.io/pypi/v/whisperx.svg)](https://pypi.org/project/whisperx/)
-[![Python](https://img.shields.io/pypi/pyversions/whisperx.svg)](https://pypi.org/project/whisperx/)
-[![License](https://img.shields.io/github/license/m-bain/whisperX.svg)](https://github.com/m-bain/whisperX/blob/master/LICENSE)
-[![arXiv](https://img.shields.io/badge/arXiv-2303.00747-b31b1b.svg)](https://arxiv.org/abs/2303.00747)
+WhisperX is an extension of the OpenAI Whisper model for improved performance on multilingual transcription and speaker diarization. It builds upon faster-whisper and adds features like:
 
-**WhisperX** is an extension of OpenAI's Whisper model with improved performance and additional features.
-
-## Features
-
-- Improved transcription accuracy
-- Faster processing times
-- Additional language support
-- Enhanced diarization capabilities
+- **Speaker Diarization**: Identify and separate different speakers in audio
+- **Word-level Timestamps**: Get precise timing for each word
+- **Batched Inference**: Process multiple audio files efficiently
+- **VAD (Voice Activity Detection)**: Only transcribe when speech is detected
 
 ## Installation
 
@@ -20,19 +13,29 @@
 pip install whisperx
 ```
 
-## Usage
+## Quick Start
 
 ```python
 import whisperx
 
 # Load model
-model = whisperx.load_model("base")
+model = whisperx.load_model("large-v3", device="cuda", compute_type="float16")
 
-# Transcribe audio
-result = model.transcribe("audio.mp3")
+# Transcribe
+result = model.transcribe("audio.mp3", batch_size=32)
 ```
 
-## Related Projects
+## Features
+- **Multilingual Support**: Works with all Whisper languages
+- **Speaker Diarization**: Built-in diarization using pyannote.audio
+- **Batched Processing**: Efficient batched inference pipeline
+- **Word Alignment**: Precise word-level timestamps
+- **VAD Options**: Multiple VAD models supported (Silero, pyannote)
+- **Output Formats**: SRT, VTT, TXT, JSON, TSV
+
+## Documentation
+
+For detailed documentation and examples, please visit our [documentation](https://github.com/m-bain/whisperX#readme).
 
 1. related project [openai/whisper](https://github.com/openai/whisper)
 2. related project [SYSTRAN/faster-whisper](https://github.com/SYSTRAN/faster-whisper)
